@@ -1,14 +1,19 @@
 import React from 'react'
+import soundFile from '../audio/analog-watch.mp3'
 
-function Audio(props) {
-  return (
-    <div>
-      <audio>
-          <source src="audio/beep.wav" type="audio/wav"/>
-      </audio>
-    </div>
-  )
+const Audio = ({startAlarm}) => {
+     //let sound = new Audio(soundFile)
+     if(startAlarm) {
+      return (
+        <div>
+          <audio  src={soundFile}  autoPlay />
+        </div>
+      )
+     } else {
+       return(<div></div>)
+     }
+    
 }
 
-export default Audio
+export default Audio;
 
