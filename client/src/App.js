@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Timer from './components/Timer';
 import WorkButton from './components/WorkButton'
+import BreakButton from './components/BreakButton'
 import Audio from './components/Audio'
 import BreakAudio from './components/BreakAudio'
 import BreakTimer from './components/BreakTimer'
@@ -219,9 +220,7 @@ class App extends Component {
                <Audio time={this.state.time} running={this.state.running} paused={this.state.paused}/>
                <BreakAudio the_break={this.state.the_break} running={this.state.running} paused={this.state.paused}/>
                <WorkButton incrementWorkMinute={this.incrementWorkMinute} decrementWorkMinute={this.decrementWorkMinute}/>
-               <hr/>
-               <button onClick={this.incrementBreakMinute}>+</button>
-               <button onClick={this.decrementBreakMinute}>-</button>        
+               <BreakButton incrementBreakMinute={this.incrementBreakMinute}  decrementBreakMinute={this.decrementBreakMinute} />      
             </section>
         </div>
     );
