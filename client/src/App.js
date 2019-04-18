@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Timer from './components/Timer';
 import BreakTimer from './components/BreakTimer'
 
+
 let timer_var;
 class App extends Component {
   constructor(props){
@@ -133,17 +134,20 @@ class App extends Component {
             }
 
           }
-          if(time === 0 && the_break === 0){
-            time = 1
-            the_break = 50
+          if(this.state.time === 0 && this.state.the_break === 0){
             this.setState((prevState, props) => {
               return {
                 time: 2,
                 the_break: 2,
-                count: prevState.count+1
+                count: prevState.count+1,
+                running: false
               }
             })
             console.log(this.state.count)
+            setTimeout(() => {
+              console.log("Restarting the timer...")
+              this.startTheTimer()
+            }, 2000)
           }
 
         }, 1000)    
