@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import Timer from './components/Timer';
-import WorkButton from './components/WorkButton'
-import BreakButton from './components/BreakButton'
 import Audio from './components/Audio'
 import BreakAudio from './components/BreakAudio'
 import BreakTimer from './components/BreakTimer'
@@ -203,7 +201,7 @@ class App extends Component {
         minute: 25,
         the_break: 300,
         seconds: 0, 
-        b_minute: 0,
+        b_minute: 5,
         b_second: 0,
         running: false
       }
@@ -212,17 +210,24 @@ class App extends Component {
   
   render() {
     return (
-      <div>
-            <section className="container">
-            <h2>Welcome to Pomodo</h2>
-              <BreakTimer b_minute={this.state.b_minute} b_second={this.state.b_second} running={this.state.running}/>
-               <Timer minute={this.state.minute} seconds={this.state.seconds} startTheTimer={this.startTheTimer} resetTimer={this.resetTimer} pauseTimer={this.pauseTimer} running={this.state.running}/>
+          <section className="container">
+            <div id="work_time">
+              <button onClick={this.incrementWorkMinute}>+</button>
+                  <Timer minute={this.state.minute} seconds={this.state.seconds} startTheTimer={this.startTheTimer} resetTimer={this.resetTimer} pauseTimer={this.pauseTimer} running={this.state.running}/>
+                <button onClick={this.decrementWorkMinute}>-</button>
+            </div>
+             
+              <br/>
+
+            <div id="break_time">
+              <button onClick={this.incrementBreakMinute}>+</button>
+                  <BreakTimer b_minute={this.state.b_minute} b_second={this.state.b_second} running={this.state.running}/>
+                <button onClick={this.decrementBreakMinute}>-</button> 
+            </div>
+
                <Audio time={this.state.time} running={this.state.running} paused={this.state.paused}/>
                <BreakAudio the_break={this.state.the_break} running={this.state.running} paused={this.state.paused}/>
-               <WorkButton incrementWorkMinute={this.incrementWorkMinute} decrementWorkMinute={this.decrementWorkMinute}/>
-               <BreakButton incrementBreakMinute={this.incrementBreakMinute}  decrementBreakMinute={this.decrementBreakMinute} />      
             </section>
-        </div>
     );
   }
 }

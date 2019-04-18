@@ -15,10 +15,14 @@ body {
   background-color: #b300b3;
   margin: 3rem auto;
   padding: 1rem;
-  border-radius: 1rem;
+  justify-content: space-around;
   text-align: center;
+  align-items: center
 }
 
+#work_time, #break_time {
+  flex: 1;
+}
 
 .timer {
   display:flex;
@@ -27,7 +31,7 @@ body {
 }
 
 .timer h1 {
-  font-size: 10rem;
+  font-size: 7rem;
   margin: 0 auto;
   color: #ffe6ff;
 }
@@ -37,8 +41,9 @@ body {
 }
 
 .break_timer {
-  display: flex;
-  align-items: flex-end;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
 }
 .break_timer h3 {
 
