@@ -64,7 +64,7 @@ class App extends Component {
     }else if(this.state.paused || !this.state.running){
       this.setState((prevState, props) => {
         return {
-          the_break: prevState.the_break + 1,
+          the_break: prevState.the_break + 60,
           b_minute: prevState.b_minute + 1
         }
       })
