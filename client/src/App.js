@@ -4,6 +4,8 @@ import Audio from './components/Audio'
 import BreakAudio from './components/BreakAudio'
 import BreakTimer from './components/BreakTimer'
 
+import angle_up from './icons/angle-up-solid.svg'
+import angle_down from './icons/angle-bottom-solid.svg'
 
 let timer_var;
 class App extends Component {
@@ -189,6 +191,7 @@ class App extends Component {
       b_second: this.state.b_second,
       the_break: this.state.the_break,
       paused: true,
+      running: false,
     })
   }
 
@@ -213,7 +216,7 @@ class App extends Component {
       <div className="wrapper">
         <section className="container">
             <div id="work_time">
-              <button onClick={this.incrementWorkMinute}>+</button>
+              <button onClick={this.incrementWorkMinute} className="fa"><img src={angle_up} alt="Angle_up" id="angle_up"/></button>
                   <Timer minute={this.state.minute} seconds={this.state.seconds} startTheTimer={this.startTheTimer} resetTimer={this.resetTimer} pauseTimer={this.pauseTimer} running={this.state.running}/>
                 <button onClick={this.decrementWorkMinute}>-</button>
             </div>
@@ -224,6 +227,7 @@ class App extends Component {
                 <button onClick={this.decrementBreakMinute}>-</button> 
             </div>
         </section>
+        
         <Audio time={this.state.time} running={this.state.running} paused={this.state.paused}/>
         <BreakAudio the_break={this.state.the_break} running={this.state.running} paused={this.state.paused}/>
       </div>

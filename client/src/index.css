@@ -61,7 +61,7 @@ body {
   align-items: center;
 }
 .break_timer h3 {
-
+  font-size: 2rem;
 }
 
 .btn {
@@ -71,6 +71,22 @@ body {
  color: #ffe6ff;
  border: 4px solid #ffe6ff;
  text-transform: uppercase;
+}
+.fa {
+  background-color: transparent;
+  border: 0;
+}
+
+#angle_up {
+  color: red;
+  width: 2rem;
+  height: auto;
+}
+#angle_up:hover {
+  cursor: pointer;
+}
+.start {
+  margin-bottom: 2rem;
 }
 .btn:hover {
   cursor: pointer;

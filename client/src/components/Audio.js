@@ -8,7 +8,7 @@ const Audio = ({time, paused, running}) => {
                 <audio  src={soundFile}  autoPlay />
               </div>
             )
-          } else if(time === 0 || paused) {
+          } else if(time === 0) {
             return(<div></div>)
           } else {
             return (<div></div>)
