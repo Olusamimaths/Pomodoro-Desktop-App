@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Timer from './components/Timer';
+import WorkButton from './components/WorkButton'
 import Audio from './components/Audio'
 import BreakAudio from './components/BreakAudio'
 import BreakTimer from './components/BreakTimer'
@@ -11,8 +12,8 @@ class App extends Component {
     super(props)
     this.state = {
       count: 0,
-      time: 14,
-      the_break: 14,
+      time: 1500,
+      the_break: 300,
       minute: 25,
       seconds: 0, 
       b_minute: 5,
@@ -46,7 +47,8 @@ class App extends Component {
           minute: prevState.minute - 1
         }
       })
-      if(this.state.minute === 0 && this.state.time === 0){
+      
+      if(this.state.minute === 0){
         this.setState((prevState, props) => {
           return {
             minute: 0,
@@ -80,7 +82,7 @@ class App extends Component {
           b_minute: prevState.b_minute - 1
         }
       })
-      if(this.state.b_minute === 0 && this.state.the_break === 0){
+      if(this.state.b_minute === 0){
         this.setState((prevState, props) => {
           return {
             b_minute: 0,
@@ -141,8 +143,8 @@ class App extends Component {
           if(this.state.time === 0 && this.state.the_break === 0){
             this.setState((prevState, props) => {
               return {
-                time: 14,
-                the_break: 14,
+                time: 1500,
+                the_break: 300,
                 count: prevState.count+1,
                 running: false
               }
@@ -169,9 +171,15 @@ class App extends Component {
     } else { // timer not running and not paused
       this.timer()
     }
+    this.setState(() => {
+      return{
+        paused: false
+      }
+    })
           
   } // end of set interval
 
+  
   pauseTimer = () =>{
     clearInterval(timer_var)
     this.setState( {
@@ -180,7 +188,8 @@ class App extends Component {
       seconds: this.state.seconds, 
       b_minute: this.state.b_minute,
       b_second: this.state.b_second,
-      paused: true
+      the_break: this.state.the_break,
+      paused: true,
     })
   }
 
@@ -191,7 +200,7 @@ class App extends Component {
       return {
         time: 1500,
         minute: 25,
-        the_break: 600,
+        the_break: 300,
         seconds: 0, 
         b_minute: 0,
         b_second: 0,
@@ -207,10 +216,9 @@ class App extends Component {
             <h2>Welcome to Pomodo</h2>
               <BreakTimer b_minute={this.state.b_minute} b_second={this.state.b_second} running={this.state.running}/>
                <Timer minute={this.state.minute} seconds={this.state.seconds} startTheTimer={this.startTheTimer} resetTimer={this.resetTimer} pauseTimer={this.pauseTimer} running={this.state.running}/>
-               <Audio time={this.state.time}/>
-               <BreakAudio the_break={this.state.the_break}/>
-               <button onClick={this.incrementWorkMinute}>+</button>
-               <button onClick={this.decrementWorkMinute}>-</button> 
+               <Audio time={this.state.time} running={this.state.running} paused={this.state.paused}/>
+               <BreakAudio the_break={this.state.the_break} running={this.state.running} paused={this.state.paused}/>
+               <WorkButton incrementWorkMinute={this.incrementWorkMinute} decrementWorkMinute={this.decrementWorkMinute}/>
                <hr/>
                <button onClick={this.incrementBreakMinute}>+</button>
                <button onClick={this.decrementBreakMinute}>-</button>        
