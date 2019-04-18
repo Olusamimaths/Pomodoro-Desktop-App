@@ -1,18 +1,12 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: antiquewhite;
+  background: rgb(13,11,182);
+  background: linear-gradient(333deg, rgba(13,11,182,0.8099614845938375) 0%, rgba(255,255,255,1) 89%, rgba(255,255,254,0.11528361344537819) 100%);
 }
 
 .container {
   width: 600px;
   min-height: 600px;
-  background-color: #b300b3;
+  /* background-color: #b300b3; */
   margin: 3rem auto;
   padding: 1rem;
   display: flex;
@@ -43,17 +37,17 @@ body {
   display:flex;
   flex-direction: column;
   align-items: center;
+  border: 1rem solid rgba(255,154,0,0.11528361344537819);
+  border-radius: 5rem;
+  padding: 1rem;
 }
 
 .timer h1 {
   font-size: 7rem;
   margin: 0 auto;
-  color: #ffe6ff;
+  color: #ffcc00;
 }
 
-.timer h3 {
-  text-align: right;
-}
 
 .break_timer {
   display:flex;
@@ -61,7 +55,10 @@ body {
   align-items: center;
 }
 .break_timer h3 {
-  font-size: 2rem;
+  font-size: 2.5rem;
+  padding: 0;
+  margin: 1rem;
+  color: #ffcc00;
 }
 
 .btn {
@@ -78,7 +75,6 @@ body {
 }
 
 #angle_up {
-  color: red;
   width: 2rem;
   height: auto;
 }
@@ -86,11 +82,18 @@ body {
   cursor: pointer;
 }
 .start {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 .btn:hover {
   cursor: pointer;
 }
+.break_icon{
+  width: 1rem;
+}
+.break_icon:hover {
+  cursor: pointer;
+}
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
