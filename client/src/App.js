@@ -210,24 +210,24 @@ class App extends Component {
   
   render() {
     return (
-          <section className="container">
+      <div className="wrapper">
+        <section className="container">
             <div id="work_time">
               <button onClick={this.incrementWorkMinute}>+</button>
                   <Timer minute={this.state.minute} seconds={this.state.seconds} startTheTimer={this.startTheTimer} resetTimer={this.resetTimer} pauseTimer={this.pauseTimer} running={this.state.running}/>
                 <button onClick={this.decrementWorkMinute}>-</button>
             </div>
              
-              <br/>
-
             <div id="break_time">
               <button onClick={this.incrementBreakMinute}>+</button>
                   <BreakTimer b_minute={this.state.b_minute} b_second={this.state.b_second} running={this.state.running}/>
                 <button onClick={this.decrementBreakMinute}>-</button> 
             </div>
-
-               <Audio time={this.state.time} running={this.state.running} paused={this.state.paused}/>
-               <BreakAudio the_break={this.state.the_break} running={this.state.running} paused={this.state.paused}/>
-            </section>
+        </section>
+        <Audio time={this.state.time} running={this.state.running} paused={this.state.paused}/>
+        <BreakAudio the_break={this.state.the_break} running={this.state.running} paused={this.state.paused}/>
+      </div>
+          
     );
   }
 }
