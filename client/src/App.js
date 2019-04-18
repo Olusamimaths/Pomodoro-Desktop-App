@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Timer from './components/Timer';
 import Audio from './components/Audio'
+import BreakAudio from './components/BreakAudio'
 import BreakTimer from './components/BreakTimer'
 
 
@@ -10,15 +11,14 @@ class App extends Component {
     super(props)
     this.state = {
       count: 0,
-      time: 7,
-      the_break: 60,
+      time: 14,
+      the_break: 14,
       minute: 25,
       seconds: 0, 
       b_minute: 5,
       b_second: 0,
       running: false,
       paused: false,
-      startAlarm: false,
     }
     this.startTheTimer = this.startTheTimer.bind(this);
   }
@@ -137,26 +137,12 @@ class App extends Component {
 
           }
 
-          
-          if(this.state.time < 6) {
-            this.setState(() => {
-              return {
-                startAlarm: true
-              }
-            })
-          } else if(this.state.time  === 0){
-            this.setState(() => {
-              return {
-                muteAlarm: "muted"
-              }
-            })
-          }
 
           if(this.state.time === 0 && this.state.the_break === 0){
             this.setState((prevState, props) => {
               return {
-                time: 2,
-                the_break: 2,
+                time: 14,
+                the_break: 14,
                 count: prevState.count+1,
                 running: false
               }
@@ -221,7 +207,8 @@ class App extends Component {
             <h2>Welcome to Pomodo</h2>
               <BreakTimer b_minute={this.state.b_minute} b_second={this.state.b_second} running={this.state.running}/>
                <Timer minute={this.state.minute} seconds={this.state.seconds} startTheTimer={this.startTheTimer} resetTimer={this.resetTimer} pauseTimer={this.pauseTimer} running={this.state.running}/>
-               <Audio startAlarm={this.state.startAlarm}/>
+               <Audio time={this.state.time}/>
+               <BreakAudio the_break={this.state.the_break}/>
                <button onClick={this.incrementWorkMinute}>+</button>
                <button onClick={this.decrementWorkMinute}>-</button> 
                <hr/>

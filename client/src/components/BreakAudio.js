@@ -1,8 +1,8 @@
 import React from 'react'
 import soundFile from '../audio/analog-watch.mp3'
 
-const Audio = ({time}) => {
-          if(time < 12) {
+const BreakAudio = ({the_break}) => {
+          if(the_break < 12) {
             return (
               <div>
                 <audio  src={soundFile}  autoPlay />
@@ -13,5 +13,5 @@ const Audio = ({time}) => {
           }
 }
 
-export default Audio;
+export default BreakAudio;
 
