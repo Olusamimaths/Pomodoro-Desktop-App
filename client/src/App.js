@@ -3,9 +3,11 @@ import Timer from './components/Timer';
 import Audio from './components/Audio'
 import BreakAudio from './components/BreakAudio'
 import BreakTimer from './components/BreakTimer'
+import Particles from 'react-particles-js'
 
 import angle_up from './icons/angle-up-solid.svg'
 import angle_down from './icons/angle-down-solid.svg'
+import config from './particle-config';
 
 let timer_var;
 class App extends Component {
@@ -49,11 +51,11 @@ class App extends Component {
         }
       })
       
-      if(this.state.minute === 0){
+      if(this.state.minute < 2){
         this.setState((prevState, props) => {
           return {
-            minute: 0,
-            time: 0,
+            minute: 1,
+            time: 60,
             seconds: 0
           }
         })
@@ -84,11 +86,12 @@ class App extends Component {
           b_minute: prevState.b_minute - 1
         }
       })
-      if(this.state.b_minute === 0){
+      if(this.state.b_minute < 2){
         this.setState((prevState, props) => {
           return {
-            b_minute: 0,
-            the_break: 0
+            b_minute: 1,
+            the_break: 1,
+            b_second: 0
           }
         })
       }
@@ -214,6 +217,19 @@ class App extends Component {
   render() {
     return (
       <div className="wrapper">
+      <Particles 
+        params={config
+        }
+        style={{ 
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        
+      }}
+        className="particle-js"
+      />
         <section className="container">
             <div id="work_time">
               <button onClick={this.incrementWorkMinute} className="fa">
