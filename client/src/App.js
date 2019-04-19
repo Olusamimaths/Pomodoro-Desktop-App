@@ -53,7 +53,8 @@ class App extends Component {
         this.setState((prevState, props) => {
           return {
             minute: 0,
-            time: 0
+            time: 0,
+            seconds: 0
           }
         })
       }
@@ -165,7 +166,7 @@ class App extends Component {
     // avoid running multiple timer in a second
     // timer running and not paused
     if(this.state.running && !this.state.paused){
-      alert("Timer already running")
+      // do nothing
       console.log("Nothing to do")
     } else if(this.state.paused) { // timer is paused
       this.timer() 
@@ -190,8 +191,7 @@ class App extends Component {
       b_minute: this.state.b_minute,
       b_second: this.state.b_second,
       the_break: this.state.the_break,
-      paused: true,
-      running: false,
+      paused: true
     })
   }
 
