@@ -3,9 +3,11 @@ import Timer from './components/Timer';
 import Audio from './components/Audio'
 import BreakAudio from './components/BreakAudio'
 import BreakTimer from './components/BreakTimer'
+import Particles from 'react-particles-js'
 
 import angle_up from './icons/angle-up-solid.svg'
 import angle_down from './icons/angle-down-solid.svg'
+import config from './particle-config';
 
 let timer_var;
 class App extends Component {
@@ -13,9 +15,9 @@ class App extends Component {
     super(props)
     this.state = {
       count: 0,
-      time: 1500,
+      time: 1800,
       the_break: 300,
-      minute: 25,
+      minute: 30,
       seconds: 0, 
       b_minute: 5,
       b_second: 0,
@@ -49,11 +51,12 @@ class App extends Component {
         }
       })
       
-      if(this.state.minute === 0){
+      if(this.state.minute < 6){
         this.setState((prevState, props) => {
           return {
-            minute: 0,
-            time: 0
+            minute: 5,
+            time: 300,
+            seconds: 0
           }
         })
       }
@@ -83,11 +86,12 @@ class App extends Component {
           b_minute: prevState.b_minute - 1
         }
       })
-      if(this.state.b_minute === 0){
+      if(this.state.b_minute < 3){
         this.setState((prevState, props) => {
           return {
-            b_minute: 0,
-            the_break: 0
+            b_minute: 2,
+            the_break: 120,
+            b_second: 0
           }
         })
       }
@@ -144,8 +148,9 @@ class App extends Component {
           if(this.state.time === 0 && this.state.the_break === 0){
             this.setState((prevState, props) => {
               return {
-                time: 1500,
+                time: 1800,
                 the_break: 300,
+                b_minute: 5,
                 count: prevState.count+1,
                 running: false
               }
@@ -165,7 +170,7 @@ class App extends Component {
     // avoid running multiple timer in a second
     // timer running and not paused
     if(this.state.running && !this.state.paused){
-      alert("Timer already running")
+      // do nothing
       console.log("Nothing to do")
     } else if(this.state.paused) { // timer is paused
       this.timer() 
@@ -190,8 +195,7 @@ class App extends Component {
       b_minute: this.state.b_minute,
       b_second: this.state.b_second,
       the_break: this.state.the_break,
-      paused: true,
-      running: false,
+      paused: true
     })
   }
 
@@ -200,8 +204,8 @@ class App extends Component {
     clearInterval(timer_var)
     this.setState((prevState, props) => {
       return {
-        time: 1500,
-        minute: 25,
+        time: 1800,
+        minute: 30,
         the_break: 300,
         seconds: 0, 
         b_minute: 5,
@@ -214,8 +218,23 @@ class App extends Component {
   render() {
     return (
       <div className="wrapper">
+      <Particles 
+        params={config
+        }
+        style={{ 
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        
+      }}
+        className="particle-js"
+      />
         <section className="container">
+        
             <div id="work_time">
+            <h2 id="sessions">SESSIONS: <span className="count">{this.state.count}</span></h2>
               <button onClick={this.incrementWorkMinute} className="fa">
                 <img src={angle_up} alt="Angle_up" id="angle_up"/>
               </button>
@@ -228,6 +247,7 @@ class App extends Component {
                   <BreakTimer b_minute={this.state.b_minute} b_second={this.state.b_second} running={this.state.running}/>
                 <button onClick={this.decrementBreakMinute} className="fa"><img src={angle_down} alt="Angle_up" className="break_icon"/></button> 
             </div>
+            <p id="credit">Pomodoro Desktop App | Made with love by <a href="https://github.com/olusamimaths" rel="noopener" target="_blank">Olusola</a> </p>
         </section>
         
         <Audio time={this.state.time} running={this.state.running} paused={this.state.paused}/>
