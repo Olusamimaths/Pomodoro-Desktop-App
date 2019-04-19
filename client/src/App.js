@@ -23,6 +23,7 @@ class App extends Component {
       b_second: 0,
       running: false,
       paused: false,
+      message: ""
     }
     this.startTheTimer = this.startTheTimer.bind(this);
   }
@@ -56,7 +57,8 @@ class App extends Component {
           return {
             minute: 5,
             time: 300,
-            seconds: 0
+            seconds: 0,
+            message: "Sorry, You can't reduce the work time below 5 minutes"
           }
         })
       }
@@ -91,7 +93,8 @@ class App extends Component {
           return {
             b_minute: 2,
             the_break: 120,
-            b_second: 0
+            b_second: 0,
+            message: "Sorry, You can't reduce the break time below 2 minutes"
           }
         })
       }
@@ -152,14 +155,15 @@ class App extends Component {
                 the_break: 300,
                 b_minute: 5,
                 count: prevState.count+1,
-                running: false
+                running: false,
+                message: `App restarts in 5 seconds`
               }
             })
             console.log(this.state.count)
             setTimeout(() => {
               console.log("Restarting the timer...")
               this.startTheTimer()
-            }, 2000)
+            }, 4000)
           }
         }, 1000)
 
@@ -169,6 +173,11 @@ class App extends Component {
   startTheTimer(){
     // avoid running multiple timer in a second
     // timer running and not paused
+    this.setState(()=> {
+      return {
+        message: ""
+      }
+    })
     if(this.state.running && !this.state.paused){
       // do nothing
       console.log("Nothing to do")
@@ -235,6 +244,7 @@ class App extends Component {
         
             <div id="work_time">
             <h2 id="sessions">SESSIONS: <span className="count">{this.state.count}</span></h2>
+            <p className="message">{this.state.message}</p>
               <button onClick={this.incrementWorkMinute} className="fa">
                 <img src={angle_up} alt="Angle_up" id="angle_up"/>
               </button>
