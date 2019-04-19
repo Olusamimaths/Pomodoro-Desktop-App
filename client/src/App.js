@@ -15,9 +15,9 @@ class App extends Component {
     super(props)
     this.state = {
       count: 0,
-      time: 1500,
+      time: 1800,
       the_break: 300,
-      minute: 25,
+      minute: 30,
       seconds: 0, 
       b_minute: 5,
       b_second: 0,
@@ -51,11 +51,11 @@ class App extends Component {
         }
       })
       
-      if(this.state.minute < 2){
+      if(this.state.minute < 6){
         this.setState((prevState, props) => {
           return {
-            minute: 1,
-            time: 60,
+            minute: 5,
+            time: 300,
             seconds: 0
           }
         })
@@ -86,11 +86,11 @@ class App extends Component {
           b_minute: prevState.b_minute - 1
         }
       })
-      if(this.state.b_minute < 2){
+      if(this.state.b_minute < 3){
         this.setState((prevState, props) => {
           return {
-            b_minute: 1,
-            the_break: 1,
+            b_minute: 2,
+            the_break: 120,
             b_second: 0
           }
         })
@@ -148,8 +148,9 @@ class App extends Component {
           if(this.state.time === 0 && this.state.the_break === 0){
             this.setState((prevState, props) => {
               return {
-                time: 1500,
+                time: 1800,
                 the_break: 300,
+                b_minute: 5,
                 count: prevState.count+1,
                 running: false
               }
@@ -203,8 +204,8 @@ class App extends Component {
     clearInterval(timer_var)
     this.setState((prevState, props) => {
       return {
-        time: 1500,
-        minute: 25,
+        time: 1800,
+        minute: 30,
         the_break: 300,
         seconds: 0, 
         b_minute: 5,
@@ -231,7 +232,9 @@ class App extends Component {
         className="particle-js"
       />
         <section className="container">
+        
             <div id="work_time">
+            <h2 id="sessions">SESSIONS: <span className="count">{this.state.count}</span></h2>
               <button onClick={this.incrementWorkMinute} className="fa">
                 <img src={angle_up} alt="Angle_up" id="angle_up"/>
               </button>
@@ -244,6 +247,7 @@ class App extends Component {
                   <BreakTimer b_minute={this.state.b_minute} b_second={this.state.b_second} running={this.state.running}/>
                 <button onClick={this.decrementBreakMinute} className="fa"><img src={angle_down} alt="Angle_up" className="break_icon"/></button> 
             </div>
+            <p id="credit">Pomodoro Desktop App | Made with love by <a href="https://github.com/olusamimaths" rel="noopener" target="_blank">Olusola</a> </p>
         </section>
         
         <Audio time={this.state.time} running={this.state.running} paused={this.state.paused}/>

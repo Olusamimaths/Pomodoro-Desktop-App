@@ -116,3 +116,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+#credit{
+  z-index: 4;
+  color: #eef2f6
+}
+#credit a {
+  color: #cdd8e4
+}
+#sessions {
+  color:  #9cb1c9;
+  margin-bottom: 0;
+  text-align: left;
+  margin-left: 2rem;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.count {
+  color: #eef2f6
+}
